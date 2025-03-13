@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('name'); // Ejemplo: "Mi lista de compras"
+            $table->string('name');
             $table->timestamps();
         });
     }

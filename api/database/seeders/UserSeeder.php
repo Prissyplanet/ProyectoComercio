@@ -10,29 +10,27 @@ use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+    
     public function run(): void
     {
         DB::table('users')->insert([
             [
-                'name' => 'Admin User',
-                'email' => 'admin@example.com',
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
                 'password' => Hash::make('password'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name' => 'John Doe',
-                'email' => 'johndoe@example.com',
+                'name' => 'Fernando',
+                'email' => 'xxelferxx14@gmail.com',
                 'password' => Hash::make('password123'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name' => 'Jane Doe',
-                'email' => 'janedoe@example.com',
+                'name' => 'prueba',
+                'email' => 'xxelferxx14@outlook.com',
                 'password' => Hash::make('securepass'),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

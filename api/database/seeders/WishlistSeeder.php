@@ -9,14 +9,12 @@ use Carbon\Carbon;
 
 class WishlistSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+   
     public function run(): void
     {
         DB::table('wishlists')->insert([
             [
-                'user_id' => 1, // Asegúrate de que este usuario exista
+                'user_id' => 1, 
                 'name' => 'Vintage Collection',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

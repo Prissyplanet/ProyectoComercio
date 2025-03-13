@@ -7,62 +7,57 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    /**
-     * Muestra una lista de todas las categorías.
-     */
     public function index()
     {
         $categories = Category::all();
-        return response()->json($categories);
+        return view('admin.categories', compact('categories'));
     }
 
-    /**
-     * Guarda una nueva categoría en la base de datos.
-     */
+    public function create()
+    {
+        return view('admin.category_create');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        $category = Category::create($request->all());
+        Category::create($request->all());
 
-        return response()->json($category, 201);
+        return redirect()->route('admin.categories.index')->with('success', 'Categoría creada correctamente.');
     }
 
-    /**
-     * Muestra una categoría específica por su ID.
-     */
     public function show($id)
     {
         $category = Category::findOrFail($id);
-        return response()->json($category);
+        return view('admin.category_show', compact('category'));
     }
 
-    /**
-     * Actualiza una categoría en la base de datos.
-     */
+    public function edit($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('admin.category_edit', compact('category'));
+    }
+
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
 
         $request->validate([
-            'name' => 'string|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
         $category->update($request->all());
 
-        return response()->json($category);
+        return redirect()->route('admin.categories.index')->with('success', 'Categoría actualizada correctamente.');
     }
 
-    /**
-     * Elimina una categoría de la base de datos.
-     */
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
-
-        return response()->json(['message' => 'Categoría eliminada']);
+        return redirect()->route('admin.categories.index')->with('success', 'Categoría eliminada correctamente.');
     }
 }

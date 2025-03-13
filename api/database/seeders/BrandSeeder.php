@@ -15,9 +15,9 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         DB::table('brands')->insert([
-            ['name' => 'Brand 1', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'Brand 2', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['name' => 'Brand 3', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => 'Forever21', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => 'IKEA', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['name' => 'NIKE', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
         ]);
     }
 }

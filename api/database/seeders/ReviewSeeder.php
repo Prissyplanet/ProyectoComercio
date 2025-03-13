@@ -9,15 +9,13 @@ use Carbon\Carbon;
 
 class ReviewSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+    
     public function run(): void
     {
         DB::table('reviews')->insert([
             [
-                'user_id' => 1, // Asegúrate de que el usuario existe
-                'product_id' => 1, // Asegúrate de que el producto existe
+                'user_id' => 1, 
+                'product_id' => 1, 
                 'rating' => 5,
                 'review' => 'Excellent vintage clock! Looks amazing in my living room.',
                 'created_at' => Carbon::now(),

@@ -7,18 +7,14 @@ use App\Models\Brand;
 
 class BrandController extends Controller
 {
-    /**
-     * Muestra una lista de todas las marcas.
-     */
+  
     public function index()
     {
         $brands = Brand::all();
         return response()->json($brands);
     }
 
-    /**
-     * Guarda una nueva marca en la base de datos.
-     */
+  
     public function store(Request $request)
     {
         $request->validate([
@@ -30,18 +26,14 @@ class BrandController extends Controller
         return response()->json($brand, 201);
     }
 
-    /**
-     * Muestra una marca específica por su ID.
-     */
+    
     public function show($id)
     {
         $brand = Brand::findOrFail($id);
         return response()->json($brand);
     }
 
-    /**
-     * Actualiza una marca en la base de datos.
-     */
+    
     public function update(Request $request, $id)
     {
         $brand = Brand::findOrFail($id);
@@ -55,9 +47,7 @@ class BrandController extends Controller
         return response()->json($brand);
     }
 
-    /**
-     * Elimina una marca de la base de datos.
-     */
+   
     public function destroy($id)
     {
         $brand = Brand::findOrFail($id);

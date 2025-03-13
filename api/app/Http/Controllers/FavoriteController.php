@@ -7,18 +7,13 @@ use App\Models\Favorite;
 
 class FavoriteController extends Controller
 {
-    /**
-     * Muestra una lista de todos los favoritos.
-     */
+    
     public function index()
     {
         $favorites = Favorite::all();
         return response()->json($favorites);
     }
 
-    /**
-     * Guarda un nuevo favorito en la base de datos.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -31,18 +26,12 @@ class FavoriteController extends Controller
         return response()->json($favorite, 201);
     }
 
-    /**
-     * Muestra un favorito específico por su ID.
-     */
     public function show($id)
     {
         $favorite = Favorite::findOrFail($id);
         return response()->json($favorite);
     }
 
-    /**
-     * Elimina un favorito de la base de datos.
-     */
     public function destroy($id)
     {
         $favorite = Favorite::findOrFail($id);

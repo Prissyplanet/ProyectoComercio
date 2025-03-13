@@ -14,13 +14,12 @@ class Wishlist extends Model
         'name',
     ];
 
-    // Relación con el usuario (una wishlist pertenece a un usuario)
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Relación muchos a muchos con Product a través de wishlist_product
     public function products()
     {
         return $this->belongsToMany(Product::class, 'wishlist_product');

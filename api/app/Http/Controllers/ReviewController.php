@@ -59,9 +59,7 @@ class ReviewController extends Controller
         return response()->json($review);
     }
 
-    /**
-     * Elimina una reseña de la base de datos.
-     */
+  
     public function destroy($id)
     {
         $review = Review::findOrFail($id);

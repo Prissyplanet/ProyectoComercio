@@ -14,6 +14,12 @@ class CategorySeeder extends Seeder
             ['name' => 'Muebles'],
             ['name' => 'Electrónica'],
             ['name' => 'Juguetes'],
+            ['name' => 'Herramientas'],
+            ['name' => 'Jardín'],
+            ['name' => 'Deportes'],
+            ['name' => 'Salud'],
+            ['name' => 'Belleza'],
+            ['name' => 'Automóviles'],
         ]);
     }
 }

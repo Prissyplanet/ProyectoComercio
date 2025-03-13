@@ -55,9 +55,7 @@ class TagController extends Controller
         return response()->json($tag);
     }
 
-    /**
-     * Elimina una etiqueta de la base de datos.
-     */
+   
     public function destroy($id)
     {
         $tag = Tag::findOrFail($id);

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->text('image_url');
-            $table->string('link')->nullable(); // Enlace a producto o promoción
+            $table->string('link')->nullable(); 
             $table->timestamps();
         });
     }
