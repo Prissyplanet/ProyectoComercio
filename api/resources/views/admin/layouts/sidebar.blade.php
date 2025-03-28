@@ -6,9 +6,8 @@
         <a href="{{ url('/admin') }}" class="brand-link">
             <!--begin::Brand Image-->
             <img
-                src="../../dist/assets/img/Echoes2.png" 
+                src="/dashboard/assets/img/Echoes2.png" 
                 class="brand-image opacity-75 shadow"
-                style="width: 50px; height: 50px;" 
             />
         </a>
         <!--end::Brand Link-->
