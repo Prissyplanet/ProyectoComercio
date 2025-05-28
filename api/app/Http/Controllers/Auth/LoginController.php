@@ -2,39 +2,41 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function login(Request $request)
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('auth')->only('logout');
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt($credentials)) {
+             /** @var \App\Models\User $user */
+            $user = Auth::user();
+            $token = $user->createToken('EchoesToken')->plainTextToken;
+            
+            return response()->json([
+                'user' => $user,
+                'token' => $token
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'Credenciales inválidas'
+        ], 401);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+        
+        return response()->json([
+            'message' => 'Sesión cerrada'
+        ], 200);
     }
 }

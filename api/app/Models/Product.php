@@ -37,9 +37,9 @@ class Product extends Model
     }
 
   
-    public function favorites()
+   public function favoritedBy()
     {
-        return $this->hasMany(Favorite::class);
+    return $this->belongsToMany(User::class, 'favorites');
     }
 
    
@@ -53,4 +53,5 @@ class Product extends Model
     {
         return $this->belongsToMany(Tag::class, 'product_tag');
     }
+    
 }

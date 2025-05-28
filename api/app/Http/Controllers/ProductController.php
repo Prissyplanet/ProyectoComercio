@@ -23,6 +23,26 @@ class ProductController extends Controller
         $brands = Brand::all();
         return view('admin.product_create', compact('categories', 'brands'));
     }
+   public function apiIndex(Request $request)
+{
+    $query = Product::with(['category', 'brand']);
+
+    if ($request->has('category_id')) {
+        $query->where('category_id', $request->category_id);
+    }
+    if ($request->has('search')) {
+        $search = $request->search;
+        $query->where(function($q) use ($search) {
+            $q->where('name', 'like', "%$search%")
+              ->orWhere('description', 'like', "%$search%")
+              ->orWhereHas('category', function($cat) use ($search) {
+                $cat->where('name', 'like', "%$search%");
+              });
+
+        });
+    }
+    return $query->get();
+}
      
     public function store(Request $request)
     {
@@ -41,10 +61,13 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Producto creado correctamente.');
     }
 
-    public function show($id)
+   public function apiShow($id)
     {
-        $product = Product::findOrFail($id);
-        return view('admin.product_show', compact('product'));
+        $product = Product::with(['category', 'brand'])->find($id);
+        if (!$product) {
+            return response()->json(['message' => 'Producto no encontrado'], 404);
+        }
+        return response()->json($product);
     }
 
     public function edit($id)

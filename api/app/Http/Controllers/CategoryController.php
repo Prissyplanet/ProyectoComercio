@@ -7,8 +7,11 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if($request->expectsJson() || $request->is('api/*')){
+            return response()->json(Category::all());
+        }
         $categories = Category::all();
         return view('admin.categories', compact('categories'));
     }

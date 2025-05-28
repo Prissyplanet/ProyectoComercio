@@ -17,9 +17,6 @@ class CategorySeeder extends Seeder
             ['name' => 'Herramientas'],
             ['name' => 'Jardín'],
             ['name' => 'Deportes'],
-            ['name' => 'Salud'],
-            ['name' => 'Belleza'],
-            ['name' => 'Automóviles'],
         ]);
     }
 }
